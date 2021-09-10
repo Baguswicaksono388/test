@@ -50,10 +50,17 @@ class Login extends CI_Controller
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		/* execute request */
-		$result = curl_exec($ch);
+		curl_exec($ch);
 
 		/* close cURL resource */
-		curl_close($ch);
+		// curl_close($ch);
+
+		$responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+		if ($responseCode == 422) {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">user already exists with that email !</div>');
+			redirect('login/registration');
+		}
 
 		redirect('login');
 	}
