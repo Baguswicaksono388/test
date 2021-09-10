@@ -17,7 +17,7 @@ class Login extends CI_Controller
 		}
 
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[8]', ['min_length' => 'Password too short (Min. 8 character)']);
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[12]', ['min_length' => 'Password too short (Min. 12 character)']);
 
 		if ($this->form_validation->run() == false) {
 			$data['judul'] = 'Registration';
